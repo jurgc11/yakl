@@ -1,0 +1,4 @@
+%YAML 1.2
+---
+!!str "Line break (no glyph)\n\
+      Line break (glyphed)\n"

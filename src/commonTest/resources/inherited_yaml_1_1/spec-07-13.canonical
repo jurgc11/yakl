@@ -1,0 +1,12 @@
+%YAML 1.2
+---
+!!seq [
+  !!seq [
+    !!str "one",
+    !!str "two",
+  ],
+  !!seq [
+    !!str "three",
+    !!str "four",
+  ],
+]

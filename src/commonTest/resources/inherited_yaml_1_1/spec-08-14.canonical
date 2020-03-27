@@ -1,0 +1,13 @@
+%YAML 1.2
+---
+!!map {
+  ? !!str "block sequence"
+  : !!seq [
+    !!str "one",
+    !!map {
+      ? !!str "two"
+      : !!str "three"
+    },
+  ],
+}
+

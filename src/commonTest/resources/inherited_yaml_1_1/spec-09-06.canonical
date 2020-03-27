@@ -1,0 +1,14 @@
+%YAML 1.2
+---
+!!str "Document"
+...
+%YAML 1.2
+---
+!!null ""
+...
+%YAML 1.2
+---
+!!map {
+  ? !!str "matches %": !!int "20"
+}
+

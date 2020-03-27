@@ -1,0 +1,6 @@
+%YAML 1.2
+---
+!!seq [
+  !!str "foo", !!str "foo",
+  !!str "bar", !!str "bar"
+]

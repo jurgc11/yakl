@@ -1,0 +1,8 @@
+%YAML 1.2
+---
+!!map {
+  ? !!str "Folding"
+  : !!str "Empty line\nas a line feed",
+  ? !!str "Chomping"
+  : !!str "Clipped empty lines\n",
+}

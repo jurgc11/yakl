@@ -1,0 +1,11 @@
+%YAML 1.2
+---
+!!map {
+  ? !!str "strip"
+  : !!str "# text1",
+  ? !!str "clip"
+  : !!str "# text2\n",
+  ? !!str "keep"
+  : !!str "# text3\n\n",
+}
+

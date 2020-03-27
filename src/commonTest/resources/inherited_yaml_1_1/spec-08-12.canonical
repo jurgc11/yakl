@@ -1,0 +1,11 @@
+%YAML 1.2
+---
+!!str "\n\
+      folded line\n\
+      next line\n\
+      \  * bullet\n\
+      \n\
+      \  * list\n\
+      \  * lines\n\
+      \n\
+      last line\n"
