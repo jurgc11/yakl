@@ -13,8 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
 package uk.org.jurg.yakl.engine.utils
 
 import uk.org.jurg.yakl.engine.utils.UriEncoder.decode

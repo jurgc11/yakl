@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package uk.org.jurg.yakl.engine.utils
 
 import kotlin.test.Test
@@ -24,7 +23,7 @@ import kotlin.test.assertTrue
 class QueueTest {
 
     @Test
-    fun x() {
+    fun queue() {
         val queue = Queue<String>(5)
         queue.add("a")
         assertEquals(queue.peek(), "a")
