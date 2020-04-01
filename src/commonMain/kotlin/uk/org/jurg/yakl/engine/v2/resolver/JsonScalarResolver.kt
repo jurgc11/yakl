@@ -31,13 +31,13 @@ val ENV_FORMAT = Regex("""^\$\{\s*((\w+)((:?([-?]))(\w+)?)?)\s*}$""")
 
 open class JsonScalarResolver : ScalarResolver {
 
-    protected val yamlImplicitResolvers = HashMap<Char?, MutableList<ResolverTuple>>()
+    private val yamlImplicitResolvers = HashMap<Char?, MutableList<ResolverTuple>>()
 
     init {
         addImplicitResolvers()
     }
 
-    open fun addImplicitResolver(
+    private fun addImplicitResolver(
         tag: Tag,
         regexp: Regex,
         first: String?
@@ -54,7 +54,7 @@ open class JsonScalarResolver : ScalarResolver {
         }
     }
 
-    protected fun addImplicitResolvers() {
+    private fun addImplicitResolvers() {
         addImplicitResolver(Tag.NULL, EMPTY, null)
         addImplicitResolver(Tag.BOOL, BOOL, "tf")
         /*

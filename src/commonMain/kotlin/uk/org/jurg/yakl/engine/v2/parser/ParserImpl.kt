@@ -62,13 +62,13 @@ class ParserImpl(
 
     constructor(reader: StreamReader, settings: LoadSettings) : this(ScannerImpl(reader), settings)
 
-    private val DEFAULT_TAGS: Map<String, String> = mapOf(
+    private val defaultTags: Map<String, String> = mapOf(
         "!" to "!",
         "!!" to Tag.PREFIX
     )
 
     private var currentEvent: Event? = null
-    private var directives = VersionTagsTuple(null, DEFAULT_TAGS)
+    private var directives = VersionTagsTuple(null, defaultTags)
     private val states = ArrayStack<Production>(100)
     private val marksStack = ArrayStack<Mark?>(10)
     private var state: Production? = ParseStreamStart()
@@ -130,7 +130,7 @@ class ParserImpl(
     private inner class ParseImplicitDocumentStart : Production {
         override fun produce(): Event? { // Parse an implicit document.
             return if (!scanner.checkToken(ID.Directive, ID.DocumentStart, ID.StreamEnd)) {
-                directives = VersionTagsTuple(null, DEFAULT_TAGS)
+                directives = VersionTagsTuple(null, defaultTags)
                 val token = scanner.peekToken()
 
                 val event = DocumentStartEvent(false, null, emptyMap(), token.startMark, token.startMark)
@@ -257,7 +257,7 @@ class ParserImpl(
         }
         if (yamlSpecVersion == null || tagHandles.isNotEmpty()) {
             // directives in the document found - drop the previous
-            for (entry in DEFAULT_TAGS.entries) {
+            for (entry in defaultTags.entries) {
                 // do not overwrite re-defined tags
                 if (!tagHandles.containsKey(entry.key)) {
                     tagHandles[entry.key] = entry.value

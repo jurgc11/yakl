@@ -31,7 +31,7 @@ import uk.org.jurg.yakl.engine.v2.scanner.StreamReader
  * It is better to create an instance for every YAML stream.
  */
 class Load(
-    private val settings: LoadSettings,
+    private val settings: LoadSettings = LoadSettings(),
     private val constructor: BaseConstructor = StandardConstructor(settings)
 ) {
 
@@ -39,20 +39,20 @@ class Load(
         return Composer(ParserImpl(streamReader, settings), settings)
     }
 
-    protected fun createComposer(yamlStream: Input): Composer {
+    private fun createComposer(yamlStream: Input): Composer {
         return createComposer(StreamReader(YamlUnicodeReader(yamlStream), settings))
     }
 
-    protected fun createComposer(yaml: String): Composer {
+    private fun createComposer(yaml: String): Composer {
         return createComposer(StreamReader(StringReader(yaml), settings))
     }
 
-    protected fun createComposer(yamlReader: Reader): Composer {
+    private fun createComposer(yamlReader: Reader): Composer {
         return createComposer(StreamReader(yamlReader, settings))
     }
 
     // Load  a single document
-    protected fun loadOne(composer: Composer): Any? {
+    private fun loadOne(composer: Composer): Any? {
         val nodeOptional = composer.getSingleNode()
         return constructor.constructSingleDocument(nodeOptional)
     }

@@ -24,7 +24,7 @@ import uk.org.jurg.yakl.engine.v2.representer.StandardRepresenter
 import uk.org.jurg.yakl.engine.v2.serializer.Serializer
 
 class Dump(
-    private val settings: DumpSettings,
+    private val settings: DumpSettings = DumpSettings(),
     private val representer: BaseRepresenter = StandardRepresenter(settings)
 ) {
 

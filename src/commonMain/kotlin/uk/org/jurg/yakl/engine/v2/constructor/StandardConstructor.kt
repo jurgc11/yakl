@@ -38,8 +38,6 @@ import uk.org.jurg.yakl.engine.v2.resolver.NAME_GROUP
 import uk.org.jurg.yakl.engine.v2.resolver.SEPARATOR_GROUP
 import uk.org.jurg.yakl.engine.v2.resolver.VALUE_GROUP
 
-//private const val ERROR_PREFIX = "while constructing an ordered map"
-
 /**
  * Construct standard Java classes
  */

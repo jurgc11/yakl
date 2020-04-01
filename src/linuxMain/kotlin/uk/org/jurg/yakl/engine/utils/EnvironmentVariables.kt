@@ -15,29 +15,22 @@
  */
 package uk.org.jurg.yakl.engine.utils
 
-import kotlinx.io.Output
-import kotlinx.io.text.Charset
-import kotlinx.io.text.name
-import kotlinx.io.text.writeUtf8String
+import kotlinx.cinterop.toKString
+import platform.posix.getenv
+import platform.posix.setenv
+import platform.posix.unsetenv
 
-//TODO only supports UTF-8
-class OutputWriter(private val output: Output, private val charset: Charset) : Writer {
+actual object EnvironmentVariables {
 
-    init {
-        if (charset.name != "UTF-8") {
-            throw UnsupportedOperationException("Unsupported character set: ${charset.name}")
-        }
+    actual fun get(name: String): String? {
+        return getenv(name)?.toKString()
     }
 
-    override fun write(str: String) {
-        output.writeUtf8String(str)
+    actual fun set(name: String, value: String) {
+        setenv(name, value, 1)
     }
 
-    override fun write(str: String, off: Int, len: Int) {
-        output.writeUtf8String(str.subSequence(off, off+len))
-    }
-
-    override fun flush() {
-        output.flush()
+    actual fun clear(name: String) {
+        unsetenv(name)
     }
 }

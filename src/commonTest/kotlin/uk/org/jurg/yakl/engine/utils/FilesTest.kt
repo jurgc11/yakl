@@ -26,27 +26,27 @@ import kotlin.test.assertTrue
 class FilesTest {
     @Test
     fun fileExists() {
-        assertTrue(Files.fileExists("src/macosTest/resources/file.txt"))
-        assertFalse(Files.fileExists("src/macosTest/resources/foo.txt"))
+        assertTrue(Files.fileExists("src/commonTest/resources/files/file.txt"))
+        assertFalse(Files.fileExists("src/commonTest/resources/files/foo.txt"))
     }
 
     @Test
     fun isDirectory() {
-        assertTrue(Files.isDirectory("src/macosTest/resources/directory"))
-        assertFalse(Files.isDirectory("src/macosTest/resources/file.txt"))
+        assertTrue(Files.isDirectory("src/commonTest/resources/files/directory"))
+        assertFalse(Files.isDirectory("src/commonTest/resources/files/file.txt"))
     }
 
     @Test
     fun readFile() {
-        assertEquals("Hello World!\n", Files.readFile("src/macosTest/resources/file.txt"))
-        val ex = assertFailsWith<IOException> { Files.readFile("src/macosTest/resources/foo.txt") }
-        assertEquals("Couldn't open file src/macosTest/resources/foo.txt", ex.message)
+        assertEquals("Hello World!\n", Files.readFile("src/commonTest/resources/files/file.txt"))
+        val ex = assertFailsWith<IOException> { Files.readFile("src/commonTest/resources/files/foo.txt") }
+        assertEquals("Couldn't open file src/commonTest/resources/files/foo.txt", ex.message)
     }
 
     @Test
     fun listFiles() {
-        assertEquals(listOf(".", "..", "file.txt", "directory"), Files.listFiles("src/macosTest/resources"))
-        val ex = assertFailsWith<IOException> { Files.listFiles("src/macosTest/resources/file.txt") }
-        assertEquals("Couldn't open directory src/macosTest/resources/file.txt", ex.message)
+        assertEquals(listOf(".", "..", "file.txt", "directory"), Files.listFiles("src/commonTest/resources/files/"))
+        val ex = assertFailsWith<IOException> { Files.listFiles("src/commonTest/resources/files/file.txt") }
+        assertEquals("Couldn't open directory src/commonTest/resources/files/file.txt", ex.message)
     }
 }

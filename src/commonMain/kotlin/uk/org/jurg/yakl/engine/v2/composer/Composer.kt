@@ -44,8 +44,8 @@ import uk.org.jurg.yakl.engine.v2.resolver.ScalarResolver
  * [YAML Specification](http://www.yaml.org/spec/1.2/spec.html#id2762107).
  *
  */
-open class Composer(
-    protected val parser: Parser,
+class Composer(
+    private val parser: Parser,
     private val settings: LoadSettings) : Iterator<Node> {
 
     private val scalarResolver: ScalarResolver = settings.scalarResolver
@@ -157,7 +157,7 @@ open class Composer(
         node.anchor = anchor
     }
 
-    protected fun composeScalarNode(anchor: Anchor?): Node {
+    private fun composeScalarNode(anchor: Anchor?): Node {
         val ev = parser.next() as ScalarEvent
         var resolved = false
         val nodeTag = if (ev.tag == null || ev.tag == "!") {
@@ -173,7 +173,7 @@ open class Composer(
         return node
     }
 
-    protected fun composeSequenceNode(anchor: Anchor?): Node {
+    private fun composeSequenceNode(anchor: Anchor?): Node {
         val startEvent = parser.next() as SequenceStartEvent
         val tag = startEvent.tag
         var resolved = false
@@ -203,7 +203,7 @@ open class Composer(
     }
 
 
-    protected fun composeMappingNode(anchor: Anchor?): Node {
+    private fun composeMappingNode(anchor: Anchor?): Node {
         val startEvent = parser.next() as MappingStartEvent
         val tag = startEvent.tag
 
@@ -234,17 +234,17 @@ open class Composer(
         return node
     }
 
-    protected fun composeMappingChildren(children: MutableList<NodeTuple>, node: MappingNode) {
+    private fun composeMappingChildren(children: MutableList<NodeTuple>, node: MappingNode) {
         val itemKey = composeKeyNode(node)
         val itemValue = composeValueNode(node)
         children.add(NodeTuple(itemKey, itemValue))
     }
 
-    protected fun composeKeyNode(node: MappingNode): Node {
+    private fun composeKeyNode(node: MappingNode): Node {
         return composeNode(node)
     }
 
-    protected fun composeValueNode(node: MappingNode): Node {
+    private fun composeValueNode(node: MappingNode): Node {
         return composeNode(node)
     }
 }

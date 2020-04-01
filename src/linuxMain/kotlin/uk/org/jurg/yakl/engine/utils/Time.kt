@@ -15,23 +15,6 @@
  */
 package uk.org.jurg.yakl.engine.utils
 
-class StringWriter : Writer {
-    private val sb = StringBuilder()
-
-    override fun write(str: String) {
-        sb.append(str)
-    }
-
-    @OptIn(ExperimentalStdlibApi::class)
-    override fun write(str: String, off: Int, len: Int) {
-        sb.appendRange(str, off, off+len)
-    }
-
-    override fun flush() {
-        //No op
-    }
-
-    override fun toString(): String {
-        return sb.toString()
-    }
+actual fun getTimeMillis(): Long {
+    return getTimeMillis()
 }

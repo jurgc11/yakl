@@ -48,7 +48,7 @@ private const val SPACE = " "
 
 class Emitter(private val opts: DumpSettings, private val stream: Writer) : Emitable {
 
-    private val ESCAPE_REPLACEMENTS: Map<Char, String> = mapOf(
+    private val escapeReplacements: Map<Char, String> = mapOf(
         '\u0000' to "0",
         '\u0007' to "a",
         '\u0008' to "b",
@@ -66,7 +66,7 @@ class Emitter(private val opts: DumpSettings, private val stream: Writer) : Emit
         '\u2029' to "P"
     )
 
-    private val DEFAULT_TAG_PREFIXES: Map<String, String> = linkedMapOf(
+    private val defaultTagPrefixes: Map<String, String> = linkedMapOf(
         "!" to  "!",
         Tag.PREFIX to "!!"
     )
@@ -220,7 +220,7 @@ class Emitter(private val opts: DumpSettings, private val stream: Writer) : Emit
             if (ev.specVersion != null) {
                 writeVersionDirective(prepareVersion(ev.specVersion))
             }
-            tagPrefixes = LinkedHashMap(DEFAULT_TAG_PREFIXES)
+            tagPrefixes = LinkedHashMap(defaultTagPrefixes)
             if (ev.tags.isNotEmpty()) {
                 handleTagDirectives(ev.tags)
             }
@@ -1100,7 +1100,7 @@ class Emitter(private val opts: DumpSettings, private val stream: Writer) : Emit
                     start = end
                 }
                 if (ch != null) {
-                    val replacement = ESCAPE_REPLACEMENTS[ch]
+                    val replacement = escapeReplacements[ch]
                     val data = if (replacement != null) {
                         "\\" + replacement
                     } else if (!opts.useUnicodeEncoding || !ch.isPrintable()) {
